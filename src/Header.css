@@ -1,0 +1,40 @@
+.Header {
+  display: flex;
+  align-items: center;
+  background-color: white;
+  height: 100px;
+  color: black;
+  -webkit-box-shadow: 0 4px 6px -6px #222;
+  -moz-box-shadow: 0 4px 6px -6px #222;
+  box-shadow: 0 4px 6px -6px #222;
+}
+
+.Logo-container {
+  display: flex;
+  flex: 1;
+}
+
+.Logo {
+  height: 65px;
+  margin-left: 20px;
+  margin-right: 20px;
+}
+
+.Title-container {
+  justify-content: center;
+  display: flex;
+  flex: 1;
+  text-align: center
+}
+
+.Authors-section {
+  display: flex;
+  flex: 1;
+  flex-direction: column;
+  align-items: flex-end;
+}
+
+.Author {
+  margin: 0;
+  margin-right: 50px;
+}

@@ -1,0 +1,29 @@
+{
+  "name": "indexter",
+  "version": "0.1.0",
+  "private": true,
+  "dependencies": {
+    "apollo-client": "^0.10.1",
+    "bootstrap": "3.3.7",
+    "graphql-tag": "^1.3.1",
+    "react": "^15.4.2",
+    "react-apollo": "^0.13.3",
+    "react-dom": "^15.4.2",
+    "react-inspector": "^1.1.2",
+    "react-spinkit": "^2.1.1"
+  },
+  "devDependencies": {
+    "eslint": "3.17.0",
+    "eslint-config-airbnb": "14.1.0",
+    "eslint-plugin-import": "2.2.0",
+    "eslint-plugin-jsx-a11y": "4.0.0",
+    "eslint-plugin-react": "6.10.0",
+    "react-scripts": "0.9.4"
+  },
+  "scripts": {
+    "start": "react-scripts start",
+    "build": "react-scripts build",
+    "test": "react-scripts test --env=jsdom",
+    "eject": "react-scripts eject"
+  }
+}
