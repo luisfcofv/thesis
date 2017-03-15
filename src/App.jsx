@@ -13,8 +13,8 @@ function App({ data }) {
     <div className="App">
       <Header />
       <div className="content">
-        <Player />
         <World data={data} />
+        <Player />
       </div>
     </div>
   );
@@ -32,7 +32,7 @@ const FetchWorld = gql`
   query FetchWorld($name: String!) { 
     world(name: $name){
       name
-      social {
+      agents {
         id
         name
         description
