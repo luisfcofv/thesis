@@ -1,21 +1,34 @@
 import React from 'react';
 import { graphql } from 'react-apollo';
 import gql from 'graphql-tag';
+import Spinner from 'react-spinkit';
 
 import Header from './Header';
 import Player from './player';
 import World from './world';
+import Location from './locations';
 
 import './App.css';
 
 function App({ data }) {
+  function renderContent() {
+    if (data.loading) {
+      return <Spinner spinnerName="wandering-cubes" />;
+    }
+
+    return (
+      <div className="content">
+        <Player />
+        <World world={data.world} />
+        <Location locations={data.world.locations} />
+      </div>
+    );
+  }
+
   return (
     <div className="App">
       <Header />
-      <div className="content">
-        <World data={data} />
-        <Player />
-      </div>
+      {renderContent()}
     </div>
   );
 }
@@ -39,15 +52,14 @@ const FetchWorld = gql`
         connections
       }
       locations {
+        id
         name
-        neighbors {
-          id
-        }
+        neighbors
       }
       player {
         name
         knowledge {
-          space
+          locations
         }
       }
     }

@@ -14,8 +14,8 @@ function Header() {
         <h1>Indexter</h1>
       </div>
       <div className="Authors-section">
-        <p className="Author">Luis Flores</p>
-        <p className="Author">David Thue</p>
+        <p className="Author">Luis Francisco Flores Vazquez</p>
+        <p className="Author">David James Thue</p>
       </div>
     </div>
   );

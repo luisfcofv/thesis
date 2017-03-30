@@ -1,4 +1,4 @@
-.World {
+.Locations {
   display: flex;
   width: 600px;
   height: 400px;
@@ -6,6 +6,12 @@
   align-items: center;
   border: 0.5px dotted gray;
   border-radius: 10px;
-  padding-left: 20px;
   margin-top: 20px;
+}
+
+.Locations h2 {
+  font-family: 'Open Sans', sans-serif;
+  font-weight: 300;
+  font-size: 30px;
+  margin-bottom: 0;
 }
