@@ -18,7 +18,7 @@ function App({ data }) {
 
     return (
       <div className="content">
-        <Player />
+        <Player world={data.world} />
         <World world={data.world} />
         <Location locations={data.world.locations} />
       </div>
@@ -43,7 +43,7 @@ App.propTypes = {
 
 const FetchWorld = gql`
   query FetchWorld($name: String!) { 
-    world(name: $name){
+    world(name: $name) {
       name
       agents {
         id
@@ -54,11 +54,20 @@ const FetchWorld = gql`
       locations {
         id
         name
-        neighbors
+        neighbors {
+          id
+          time
+        }
+      }
+      goals {
+        id
+        name
       }
       player {
         name
         knowledge {
+          social
+          goals
           locations
         }
       }

@@ -12,4 +12,8 @@ function World({ world }) {
   );
 }
 
+World.propTypes = {
+  world: React.PropTypes.shape({}),
+};
+
 export default World;
