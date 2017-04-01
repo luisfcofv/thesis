@@ -11,18 +11,19 @@ class Selector extends Component {
 			label: object.name,
 			value: object.id.toString(),
 		}));
+	}
 
+	getValue() {
 		const knowledge = this.props.knowledge.reduce((acc, item) => (
 			[...acc, this.options.find(option => option.value === item.toString())]
 		), []);
 
-		this.state = {
-			value: knowledge.map(item => item.value),
-		};
+		return knowledge.map(item => item.value);
 	}
 
-	handleSelectChange = (value) => {
-		this.setState({ value });
+	handleSelectChange = values => {
+		const result = values.split(",").map(value => parseInt(value, 10))
+		this.props.updateData(result);
 	}
 
 	render () {
@@ -32,7 +33,7 @@ class Selector extends Component {
 				<Select
 					multi
 					simpleValue
-					value={this.state.value}
+					value={this.getValue()}
 					placeholder={this.props.title}
 					options={this.options}
 					onChange={this.handleSelectChange}
