@@ -3,6 +3,8 @@ import RaisedButton from 'material-ui/RaisedButton';
 import getMuiTheme from 'material-ui/styles/getMuiTheme';
 import injectTapEventPlugin from 'react-tap-event-plugin';
 import { connect } from 'react-redux';
+import gql from 'graphql-tag';
+import { graphql } from 'react-apollo';
 
 import './index.css';
 
@@ -37,7 +39,18 @@ class Player extends Component {
     const { goals, social, locations } = player;
 
     const onTouchTap = () => {
-      console.log('yup', this.props);
+      this.props.mutate({
+        variables: {
+          "world": "My world",
+          "knowledge": {
+            "locations": locations,
+            "social": social,
+            "goals": goals,
+          },
+        },
+      }).then(({ data }) => {
+        console.log('got data', data);
+      });
     }
 
     return (
@@ -75,4 +88,21 @@ Player.propTypes = {
 };
 
 const mapStateToProps = ({ player }) => ({ player });
-export default connect(mapStateToProps, actions)(Player);
+
+const PlayerWithMutation = graphql(gql`
+  mutation generateEvents($world: String!, $knowledge: KnowledgeInput!) {
+    generateEvents(world: $world, knowledge: $knowledge) {
+      name
+      description
+      salience {
+        social
+        time
+        space
+        intention
+        causation
+      }
+    }
+  }
+`)(Player);
+
+export default connect(mapStateToProps, actions)(PlayerWithMutation);
