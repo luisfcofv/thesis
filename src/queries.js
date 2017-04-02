@@ -4,6 +4,24 @@ export const fetchWorld = gql`
   query FetchWorld($name: String!) { 
     world(name: $name) {
       name
+      latestEvents {
+        name
+        description
+        location {
+          name
+        }
+        agents {
+          id
+          name
+        }
+        salience {
+          social
+          time
+          space
+          intention
+          causation
+        }
+      }
       agents {
         id
         name

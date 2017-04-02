@@ -14,7 +14,7 @@ class TableExampleSimple extends Component {
     }
   }
 
-  renderRow() {
+  renderRows() {
     return this.props.events.map(event => {
       const agents = event.agents.reduce((acc, agent) => {
         if (acc.length) {
@@ -60,7 +60,7 @@ class TableExampleSimple extends Component {
           </TableRow>
         </TableHeader>
         <TableBody displayRowCheckbox={false}>
-          {this.renderRow()}
+          {this.renderRows()}
         </TableBody>
       </Table>
     );
@@ -68,4 +68,12 @@ class TableExampleSimple extends Component {
 }
 
 const mapStateToProps = ({ events }) => ({ events });
-export default connect(mapStateToProps)(TableExampleSimple);
+const mergeProps = (stateProps, dispatchProps, ownProps) => {
+  if (stateProps.events.length) {
+    return stateProps;
+  }
+
+  return ownProps;
+};
+
+export default connect(mapStateToProps, null, mergeProps)(TableExampleSimple);

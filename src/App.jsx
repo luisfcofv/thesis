@@ -22,7 +22,7 @@ function App({ data }) {
     return (
       <div className="content">
         <Player world={data.world} />
-        <Events />
+        <Events events={data.world.latestEvents} />
         <World world={data.world} />
         <Location locations={data.world.locations} />
       </div>
