@@ -6,10 +6,10 @@ import './App.css';
 
 import Header from './header';
 import player from './player';
+import events from './events';
 import World from './world';
 import Location from './locations';
 import { fetchWorld } from './queries';
-
 
 function App({ data }) {
   function renderContent() {
@@ -18,9 +18,11 @@ function App({ data }) {
     }
 
     const Player = player.components;
+    const Events = events.components;
     return (
       <div className="content">
         <Player world={data.world} />
+        <Events />
         <World world={data.world} />
         <Location locations={data.world.locations} />
       </div>

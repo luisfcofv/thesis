@@ -8,6 +8,7 @@ import './index.css';
 
 import App from './App';
 import player from './player';
+import events from './events';
 
 const client = new ApolloClient({
   networkInterface: createNetworkInterface({ uri: 'http://localhost:8080/graphql' }),
@@ -16,6 +17,7 @@ const client = new ApolloClient({
 const store = createStore(
   combineReducers({
     [player.constants.NAME]: player.reducer,
+    [events.constants.NAME]: events.reducer,
     apollo: client.reducer(),
   }),
   {}, // initial state

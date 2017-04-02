@@ -10,6 +10,7 @@ import './index.css';
 
 import Selector from './Selector';
 import actions from '../actions';
+import events from '../../events';
 
 injectTapEventPlugin();
 
@@ -34,24 +35,25 @@ class Player extends Component {
     }
   }
 
+  onTouchTap = () => {
+    const { goals, social, locations } =  this.props.player;
+    this.props.mutate({
+      variables: {
+        "world": "My world",
+        "knowledge": {
+          "locations": locations,
+          "social": social,
+          "goals": goals,
+        },
+      },
+    }).then(({ data }) => {
+      this.props.addEvents(data.generateEvents);
+    });
+  }
+
   render() {
     const { world, player } = this.props;
     const { goals, social, locations } = player;
-
-    const onTouchTap = () => {
-      this.props.mutate({
-        variables: {
-          "world": "My world",
-          "knowledge": {
-            "locations": locations,
-            "social": social,
-            "goals": goals,
-          },
-        },
-      }).then(({ data }) => {
-        console.log('got data', data);
-      });
-    }
 
     return (
       <div className="player">
@@ -76,7 +78,12 @@ class Player extends Component {
             updateData={this.props.updateGoals}
           />
         </div>
-        <RaisedButton primary className="button" label="Generate Event" onTouchTap={onTouchTap} />
+        <RaisedButton
+          primary
+          className="button"
+          label="Generate Event"
+          onTouchTap={this.onTouchTap}
+        />
       </div>
     );
   }
@@ -94,6 +101,12 @@ const PlayerWithMutation = graphql(gql`
     generateEvents(world: $world, knowledge: $knowledge) {
       name
       description
+      location {
+        name
+      }
+      agents {
+        name
+      }
       salience {
         social
         time
@@ -105,4 +118,4 @@ const PlayerWithMutation = graphql(gql`
   }
 `)(Player);
 
-export default connect(mapStateToProps, actions)(PlayerWithMutation);
+export default connect(mapStateToProps, { ...actions, ...events.actions })(PlayerWithMutation);
