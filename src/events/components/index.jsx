@@ -3,7 +3,13 @@ import { Table, TableBody, TableHeader, TableHeaderColumn, TableRow, TableRowCol
 import getMuiTheme from 'material-ui/styles/getMuiTheme';
 import { connect } from 'react-redux';
 
-class TableExampleSimple extends Component {
+const styles = {
+  container: {
+    margin: '20px',
+  },
+};
+
+class TableEvents extends Component {
   static childContextTypes = {
     muiTheme: React.PropTypes.object
   }
@@ -24,15 +30,28 @@ class TableExampleSimple extends Component {
         return agent.name;
       }, '');
 
+      console.log(event.protagonist)
+
       return (
         <TableRow key={event.name}>
-          <TableRowColumn>{event.name}</TableRowColumn>
-          <TableRowColumn>{event.description}</TableRowColumn>
+          <TableRowColumn>
+              <p><b>{event.name}</b></p>
+              {event.description}
+          </TableRowColumn>
+          <TableRowColumn>{event.protagonist ? 'true' : 'false'}</TableRowColumn>
           <TableRowColumn>{event.location.name}</TableRowColumn>
           <TableRowColumn>{agents}</TableRowColumn>
-          <TableRowColumn>{event.goal}</TableRowColumn>
-          <TableRowColumn>{event.cause}</TableRowColumn>
-          <TableRowColumn>{event.time}</TableRowColumn>
+          <TableRowColumn>{event.goal.name}</TableRowColumn>
+          <TableRowColumn>{event.cause.name}</TableRowColumn>
+          <TableRowColumn>{event.time} units</TableRowColumn>
+          <TableRowColumn>
+            <p>Social: {event.salience.social.toFixed(2)}</p>
+            <p>Space: {event.salience.space.toFixed(2)}</p>
+            <p>Time: {event.salience.time.toFixed(2)}</p>
+            <p>Intention: {event.salience.intention.toFixed(2)}</p>
+            <p>Causation: {event.salience.causation.toFixed(2)}</p>
+          </TableRowColumn>
+          <TableRowColumn><b>{event.salience.total.toFixed(2)}</b></TableRowColumn>
         </TableRow>
       );
     });
@@ -44,25 +63,29 @@ class TableExampleSimple extends Component {
     }
 
     return (
-      <Table>
-        <TableHeader
-          displaySelectAll={false}
-          adjustForCheckbox={false}
-        >
-          <TableRow>
-            <TableHeaderColumn>Name</TableHeaderColumn>
-            <TableHeaderColumn>Description</TableHeaderColumn>
-            <TableHeaderColumn>Location</TableHeaderColumn>
-            <TableHeaderColumn>Agents</TableHeaderColumn>
-            <TableHeaderColumn>Goal</TableHeaderColumn>
-            <TableHeaderColumn>Cause</TableHeaderColumn>
-            <TableHeaderColumn>Time</TableHeaderColumn>
-          </TableRow>
-        </TableHeader>
-        <TableBody displayRowCheckbox={false}>
-          {this.renderRows()}
-        </TableBody>
-      </Table>
+      <div style={styles.container}>
+        <Table>
+          <TableHeader
+            displaySelectAll={false}
+            adjustForCheckbox={false}
+          >
+            <TableRow>
+              <TableHeaderColumn>Name</TableHeaderColumn>
+              <TableHeaderColumn>Protagonist</TableHeaderColumn>
+              <TableHeaderColumn>Location</TableHeaderColumn>
+              <TableHeaderColumn>Agents</TableHeaderColumn>
+              <TableHeaderColumn>Goal</TableHeaderColumn>
+              <TableHeaderColumn>Cause</TableHeaderColumn>
+              <TableHeaderColumn>Time</TableHeaderColumn>
+              <TableHeaderColumn>Indices Salience</TableHeaderColumn>
+              <TableHeaderColumn>Event Salience</TableHeaderColumn>
+            </TableRow>
+          </TableHeader>
+          <TableBody displayRowCheckbox={false}>
+            {this.renderRows()}
+          </TableBody>
+        </Table>
+      </div>
     );
   }
 }
@@ -76,4 +99,4 @@ const mergeProps = (stateProps, dispatchProps, ownProps) => {
   return ownProps;
 };
 
-export default connect(mapStateToProps, null, mergeProps)(TableExampleSimple);
+export default connect(mapStateToProps, null, mergeProps)(TableEvents);

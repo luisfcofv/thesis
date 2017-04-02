@@ -7,11 +7,19 @@ export const fetchWorld = gql`
       latestEvents {
         name
         description
+        time
+        protagonist
         location {
           name
         }
         agents {
           id
+          name
+        }
+        goal {
+          name
+        }
+        cause {
           name
         }
         salience {
@@ -20,6 +28,7 @@ export const fetchWorld = gql`
           space
           intention
           causation
+          total
         }
       }
       agents {

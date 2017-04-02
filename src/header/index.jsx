@@ -1,6 +1,6 @@
 import React from 'react';
 
-import './Header.css';
+import './index.css';
 
 const logoUrl = 'http://www.ru.is/skin/basic9k/i/sitelogo.svg';
 

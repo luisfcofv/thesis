@@ -48,7 +48,7 @@ function Locations({ locations }) {
   return (
     <div className="Locations">
       <h2>Locations</h2>
-      <Graph style={{ width: '600px', height: '400px' }} graph={graph} options={options} />
+      <Graph style={{ width: '600px', height: '400px', marginTop: -40 }} graph={graph} options={options} />
     </div>
   );
 }

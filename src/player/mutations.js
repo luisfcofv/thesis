@@ -5,10 +5,18 @@ export const generateEvents = gql`
     generateEvents(world: $world, knowledge: $knowledge) {
       name
       description
+      protagonist
+      time
       location {
         name
       }
       agents {
+        name
+      }
+      goal {
+        name
+      }
+      cause {
         name
       }
       salience {
@@ -17,6 +25,7 @@ export const generateEvents = gql`
         space
         intention
         causation
+        total
       }
     }
   }
