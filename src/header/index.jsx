@@ -11,7 +11,7 @@ function Header() {
         <img src={logoUrl} className="Logo" alt="logo" />
       </div>
       <div className="Title-container">
-        <h1>Indexter</h1>
+        <h1>Event Generator</h1>
       </div>
       <div className="Authors-section">
         <p className="Author">Luis Francisco Flores Vazquez</p>
