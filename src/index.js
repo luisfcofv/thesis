@@ -11,7 +11,9 @@ import player from './player';
 import events from './events';
 
 const client = new ApolloClient({
-  networkInterface: createNetworkInterface({ uri: 'http://localhost:8080/graphql' }),
+  networkInterface: createNetworkInterface({
+    uri: 'http://sample-env.gxmxisniep.eu-west-2.elasticbeanstalk.com/graphql',
+  }),
 });
 
 const store = createStore(
