@@ -30,8 +30,6 @@ class TableEvents extends Component {
         return agent.name;
       }, '');
 
-      console.log(event.protagonist)
-
       return (
         <TableRow key={event.name}>
           <TableRowColumn>

@@ -22,8 +22,12 @@ class Selector extends Component {
 	}
 
 	handleSelectChange = values => {
-		const result = values.split(",").map(value => parseInt(value, 10))
-		this.props.updateData(result);
+		if (values.length) {
+			const result = values.split(",").map(value => parseInt(value, 10))
+			this.props.updateData(result);
+		} else {
+			this.props.updateData([]);
+		}
 	}
 
 	render () {
