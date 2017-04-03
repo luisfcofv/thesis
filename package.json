@@ -2,6 +2,7 @@
   "name": "indexter",
   "version": "0.1.0",
   "private": true,
+  "homepage": "http://luisfcofv.github.io/thesis",
   "dependencies": {
     "apollo-client": "1.0.1",
     "bootstrap": "3.3.7",
