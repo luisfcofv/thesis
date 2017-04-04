@@ -18,7 +18,6 @@ function EventDescription({ events }) {
   ));
 
   const latestEvent = sortedEvents[0];
-
   return (
     <div style={styles.container}>
       <p><b>Latest Event</b></p>

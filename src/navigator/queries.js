@@ -4,6 +4,11 @@ export const fetchWorld = gql`
   query FetchWorld($name: String!) { 
     world(name: $name) {
       name
+      state {
+        player {
+          location
+        }
+      }
       latestEvents {
         name
         description

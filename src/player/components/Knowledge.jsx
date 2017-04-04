@@ -14,19 +14,9 @@ import { generateEvents } from '../mutations';
 
 injectTapEventPlugin();
 
-class Player extends Component {
+class Knowledge extends Component {
   static childContextTypes = {
     muiTheme: React.PropTypes.object
-  }
-
-  constructor(props) {
-    super(props);
-
-    const { goals, social, locations } = props.world.player.knowledge;
-
-    props.updateGoals(goals);
-    props.updateSocial(social);
-    props.updateLocations(locations);
   }
 
   getChildContext() {
@@ -35,28 +25,12 @@ class Player extends Component {
     }
   }
 
-  onTouchTap = () => {
-    const { goals, social, locations } =  this.props.player;
-    this.props.mutate({
-      variables: {
-        "world": "My world",
-        "knowledge": {
-          "locations": locations,
-          "social": social,
-          "goals": goals,
-        },
-      },
-    }).then(({ data }) => {
-      this.props.setWorld(data.generateEvents);
-    });
-  }
-
   render() {
     const { world, player } = this.props;
     const { goals, social, locations } = player;
 
     return (
-      <div className="player">
+      <div>
         <h2>Player Knowledge</h2>
         <div className="selectors">
           <Selector
@@ -78,24 +52,9 @@ class Player extends Component {
             updateData={this.props.updateGoals}
           />
         </div>
-        <RaisedButton
-          primary
-          className="button"
-          label="Generate Event"
-          onTouchTap={this.onTouchTap}
-        />
       </div>
     );
   }
 }
 
-Player.propTypes = {
-  world: React.PropTypes.shape({}),
-  player: React.PropTypes.shape({}),
-  setWorld: React.PropTypes.func.isRequired,
-};
-
-const mapStateToProps = ({ player }) => ({ player });
-
-const PlayerWithMutation = graphql(generateEvents)(Player);
-export default connect(mapStateToProps, { ...actions })(PlayerWithMutation);
+export default Knowledge;

@@ -4,28 +4,63 @@ export const generateEvents = gql`
   mutation generateEvents($world: String!, $knowledge: KnowledgeInput!) {
     generateEvents(world: $world, knowledge: $knowledge) {
       name
-      description
-      protagonist
-      time
-      location {
+      state {
+        player {
+          location
+        }
+      }
+      latestEvents {
         name
+        description
+        time
+        protagonist
+        location {
+          name
+        }
+        agents {
+          id
+          name
+        }
+        goal {
+          name
+        }
+        cause {
+          name
+        }
+        salience {
+          social
+          time
+          space
+          intention
+          causation
+          total
+        }
       }
       agents {
+        id
+        name
+        description
+        connections
+      }
+      locations {
+        id
+        name
+        neighbors {
+          id
+          time
+        }
+      }
+      goals {
+        id
         name
       }
-      goal {
+      player {
         name
-      }
-      cause {
-        name
-      }
-      salience {
-        social
-        time
-        space
-        intention
-        causation
-        total
+        knowledge {
+          social
+          goals
+          locations
+        }
       }
     }
   }
