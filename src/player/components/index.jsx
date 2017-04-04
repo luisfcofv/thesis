@@ -7,9 +7,9 @@ import { graphql } from 'react-apollo';
 
 import './index.css';
 
-import Selector from './Selector';
 import actions from '../actions';
-import events from '../../events';
+import Knowledge from './Knowledge';
+import State from './State'
 import { generateEvents } from '../mutations';
 
 injectTapEventPlugin();
@@ -21,12 +21,22 @@ class Player extends Component {
 
   constructor(props) {
     super(props);
+    this.updateStore(props.world, props);
+  }
 
-    const { goals, social, locations } = props.world.player.knowledge;
+  componentWillReceiveProps({ world }) {
+    if (this.props.world !== world) {
+      this.updateStore(world, this.props);
+    }
+  }
+
+  updateStore(world, props) {
+    const { goals, social, locations } = world.player.knowledge;
 
     props.updateGoals(goals);
     props.updateSocial(social);
     props.updateLocations(locations);
+    props.updateStateLocation(world.state.player.location);
   }
 
   getChildContext() {
@@ -36,10 +46,11 @@ class Player extends Component {
   }
 
   onTouchTap = () => {
-    const { goals, social, locations } =  this.props.player;
+    const { goals, social, locations, stateLocation } =  this.props.player;
     this.props.mutate({
       variables: {
         "world": "My world",
+        "location": stateLocation,
         "knowledge": {
           "locations": locations,
           "social": social,
@@ -52,31 +63,11 @@ class Player extends Component {
   }
 
   render() {
-    const { world, player } = this.props;
-    const { goals, social, locations } = player;
-
     return (
       <div className="player">
-        <h2>Player Knowledge</h2>
-        <div className="selectors">
-          <Selector
-            data={world.locations}
-            knowledge={locations}
-            title="Locations"
-            updateData={this.props.updateLocations}
-          />
-          <Selector
-            data={world.agents}
-            knowledge={social}
-            title="Social"
-            updateData={this.props.updateSocial}
-          />
-          <Selector
-            data={world.goals}
-            knowledge={goals}
-            title="Goals"
-            updateData={this.props.updateGoals}
-          />
+        <div className="container">
+          <Knowledge {...this.props}/>
+          <State {...this.props}/>
         </div>
         <RaisedButton
           primary

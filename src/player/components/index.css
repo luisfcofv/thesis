@@ -8,9 +8,23 @@
   margin-left: 20px;
 }
 
+.container {
+  display: flex;
+  flex-direction: row;
+}
+
+.state {
+  margin-left: 40px;
+}
+
+.title {
+  text-align: center;
+}
+
 .player .selectors {
   display: flex;
   flex-direction: row;
+  padding-top: 0px;
 }
 
 .player .selectors .section {
@@ -21,12 +35,13 @@
 
 .player .selectors .section .title {
   text-align: center;
+  margin-top: 0px;
 }
 
 .player .button {
   width: 180px;
   align-self: flex-end;
-  margin-top: 20px;
+  margin-top: 60px;
   margin-bottom: 20px;
   margin-right: 40px;
 }

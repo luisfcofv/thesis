@@ -1,8 +1,8 @@
 import gql from 'graphql-tag';
 
 export const generateEvents = gql`
-  mutation generateEvents($world: String!, $knowledge: KnowledgeInput!) {
-    generateEvents(world: $world, knowledge: $knowledge) {
+  mutation GenerateEvents($world: String!, $knowledge: KnowledgeInput!, $location: Int!) {
+    generateEvents(world: $world, knowledge: $knowledge, location: $location) {
       name
       state {
         player {

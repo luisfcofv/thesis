@@ -15,4 +15,9 @@ const updateGoals = payload => ({
   type: types.UPDATE_GOALS,
 });
 
-export default { updateSocial, updateLocations, updateGoals };
+const updateStateLocation = payload => ({
+  payload,
+  type: types.UPDATE_STATE_LOCATION,
+});
+
+export default { updateSocial, updateLocations, updateGoals, updateStateLocation };
