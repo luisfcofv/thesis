@@ -9,6 +9,10 @@ const styles = {
     alignItems: 'center',
     justifyContent: 'center',
   },
+  eventText: {
+    width: '80%',
+    textAlign: 'center',
+  },
 };
 
 function EventDescription({ events }) {
@@ -21,7 +25,7 @@ function EventDescription({ events }) {
   return (
     <div style={styles.container}>
       <p><b>Latest Event</b></p>
-      <p>{generateGrammar(latestEvent)}</p>
+      <p style={styles.eventText}>{generateGrammar(latestEvent)}</p>
     </div>
   );
 }

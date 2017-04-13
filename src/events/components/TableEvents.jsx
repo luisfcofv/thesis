@@ -45,7 +45,7 @@ class TableEvents extends Component {
           <TableRowColumn>{agents}</TableRowColumn>
           <TableRowColumn>{event.goal.name}</TableRowColumn>
           <TableRowColumn>{event.cause.name}</TableRowColumn>
-          <TableRowColumn>{event.time} units</TableRowColumn>
+          <TableRowColumn>{event.propagation} units</TableRowColumn>
           <TableRowColumn>
             <p>Social: {event.salience.social.toFixed(2)}</p>
             <p>Space: {event.salience.space.toFixed(2)}</p>
@@ -74,7 +74,7 @@ class TableEvents extends Component {
               <TableHeaderColumn>Agents</TableHeaderColumn>
               <TableHeaderColumn>Goal</TableHeaderColumn>
               <TableHeaderColumn>Cause</TableHeaderColumn>
-              <TableHeaderColumn>Time</TableHeaderColumn>
+              <TableHeaderColumn>Propagation</TableHeaderColumn>
               <TableHeaderColumn>Indices Salience</TableHeaderColumn>
               <TableHeaderColumn>Event Salience</TableHeaderColumn>
             </TableRow>

@@ -12,10 +12,11 @@ export const fetchWorld = gql`
       latestEvents {
         name
         description
-        time
+        propagation
         protagonist
         location {
           name
+          description
         }
         agents {
           id
