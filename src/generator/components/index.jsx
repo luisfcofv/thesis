@@ -46,7 +46,7 @@ class Generator extends Component {
         <div className="sliders-container">
           <SalienceSlider
             data={generator.locationSalience}
-            title="Location"
+            title="Space"
             updateData={updateLocationSalience}
           />
           <SalienceSlider
