@@ -11,6 +11,7 @@ const options = {
   nodes: {
     shape: 'dot',
     size: 30,
+    color: '#B2EBF2',
   },
   edges: {
     arrows: {

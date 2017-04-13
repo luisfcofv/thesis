@@ -21,7 +21,7 @@ class TableEvents extends Component {
       b.salience.total - a.salience.total
     ));
   
-    return sortedEvents.map(event => {
+    return sortedEvents.map((event, index) => {
       const agents = event.agents.reduce((acc, agent) => {
         if (acc.length) {
           return `${acc}, ${agent.name}`;
@@ -30,8 +30,13 @@ class TableEvents extends Component {
         return agent.name;
       }, '');
 
+      let rowStyle;
+      if (index === 0) {
+        rowStyle = { backgroundColor: '#E0F7FA' };
+      }
+
       return (
-        <TableRow key={event.name}>
+        <TableRow key={event.name} style={rowStyle}>
           <TableRowColumn>
               <p><b>{event.name}</b></p>
               {event.description}

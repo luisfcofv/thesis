@@ -57,8 +57,9 @@ class Generator extends Component {
         </div>
         <div className="button-container">
           <RaisedButton
+            backgroundColor="#26C6DA"
+            labelColor="white"
             className="button"
-            primary
             label="Generate Event"
             onTouchTap={this.onTouchTap}
           />
