@@ -55,4 +55,4 @@ Player.propTypes = {
 };
 
 const mapStateToProps = ({ player }) => ({ player });
-export default connect(mapStateToProps, { ...actions })(Player);
+export default connect(mapStateToProps, actions)(Player);

@@ -33,7 +33,7 @@ class Selector extends Component {
 	render () {
 		return (
 			<div className="section">
-				<h3 className="title">{this.props.title}</h3>
+				<p className="title">{this.props.title}</p>
 				<Select
 					multi
 					simpleValue

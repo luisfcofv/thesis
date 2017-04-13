@@ -7,6 +7,7 @@ import { graphql } from 'react-apollo';
 import './styles.css';
 
 import SalienceSlider from './SalienceSlider';
+import actions from '../actions';
 import { generateEvents } from '../mutations';
 
 class Generator extends Component {
@@ -38,11 +39,21 @@ class Generator extends Component {
   }
 
   render() {
+    const { generator, updateLocationSalience, updateTimeSalience } = this.props;
     return (
       <div className="generator">
+        <h3 className="title">Thresholds</h3>
         <div className="sliders-container">
-          <SalienceSlider title="Location" />
-          <SalienceSlider title="Time" />
+          <SalienceSlider
+            data={generator.locationSalience}
+            title="Location"
+            updateData={updateLocationSalience}
+          />
+          <SalienceSlider
+            data={generator.timeSalience}
+            title="Time"
+            updateData={updateTimeSalience}
+          />
         </div>
         <div className="button-container">
           <RaisedButton
@@ -60,9 +71,10 @@ class Generator extends Component {
 Generator.propTypes = {
   player: React.PropTypes.shape({}),
   setWorld: React.PropTypes.func.isRequired,
+  updateLocationSalience: React.PropTypes.func.isRequired,
+  updateTimeSalience: React.PropTypes.func.isRequired,
 };
 
-const mapStateToProps = ({ player }) => ({ player });
-
+const mapStateToProps = ({ player, generator }) => ({ player, generator });
 const GeneratorWithMutation = graphql(generateEvents)(Generator);
-export default connect(mapStateToProps)(GeneratorWithMutation);
+export default connect(mapStateToProps, actions)(GeneratorWithMutation);

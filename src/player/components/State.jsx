@@ -15,7 +15,7 @@ function State(props) {
 
   return (
     <div className="state">
-      <h2 className="title">Player State</h2>
+      <h3 className="title">Player State</h3>
       <SelectField
         className="field"
         autoWidth

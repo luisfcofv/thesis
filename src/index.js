@@ -7,9 +7,10 @@ import { createStore, applyMiddleware, combineReducers, compose } from 'redux';
 
 import './index.css';
 
+import events from './events';
+import generator from './generator';
 import navigator from './navigator';
 import player from './player';
-import events from './events';
 
 injectTapEventPlugin();
 
@@ -22,9 +23,10 @@ const client = new ApolloClient({
 
 const store = createStore(
   combineReducers({
-    [player.constants.NAME]: player.reducer,
     [events.constants.NAME]: events.reducer,
+    [generator.constants.NAME]: generator.reducer,
     [navigator.constants.NAME]: navigator.reducer,
+    [player.constants.NAME]: player.reducer,
     apollo: client.reducer(),
   }),
   {}, // initial state

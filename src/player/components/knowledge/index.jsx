@@ -10,7 +10,7 @@ function Knowledge(props) {
 
   return (
     <div>
-      <h2 className="title">Player Knowledge</h2>
+      <h3 className="title">Player Knowledge</h3>
       <div className="selectors">
         <Selector
           data={world.locations}

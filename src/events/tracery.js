@@ -8,7 +8,7 @@ import tracery from 'tracery-grammar';
 
 // grammar.addModifiers(tracery.baseEngModifiers);
 
-function generateTimeGrammar({ salience, propagation }) {
+function generateTimeGrammar({ salience, propagation }, { medium, high }) {
   const midTime = [
     `is ${propagation} days from now.`,
     `is ${propagation} days from now.`,
@@ -19,9 +19,9 @@ function generateTimeGrammar({ salience, propagation }) {
     `will be held after ${propagation} days, before the sunset.`,
   ];
 
-  if (salience.time >= 0.75) {
+  if (salience.time >= high / 100) {
     return highTime;
-  } if (salience.time >= 0.5) {
+  } if (salience.time >= medium / 100) {
     return midTime;
   }
 
@@ -59,15 +59,15 @@ function generateSocialGrammar({ agents, salience }) {
   return [];
 }
 
-function generateLocationGrammar({ location, salience }) {
+function generateLocationGrammar({ location, salience }, { medium, high }) {
   const midLocation = [`It will take place at ${location.name.toLowerCase()}.`];
   const highLocation = [
     `It will take place at ${location.name.toLowerCase()}, ${location.description.toLowerCase()}.`,
   ];
 
-  if (salience.space >= 0.75) {
+  if (salience.space >= high / 100) {
     return highLocation;
-  } if (salience.space >= 0.5) {
+  } if (salience.space >= medium / 100) {
     return midLocation;
   }
 
@@ -101,11 +101,11 @@ function generateCausationGrammar({ cause, salience }) {
   return [];
 }
 
-export function generateGrammar(event) {
+export function generateGrammar(event, { timeSalience, locationSalience }) {
   const storyGrammar = tracery.createGrammar({
-    time: generateTimeGrammar(event),
+    time: generateTimeGrammar(event, timeSalience),
     social: generateSocialGrammar(event),
-    location: generateLocationGrammar(event),
+    location: generateLocationGrammar(event, locationSalience),
     intention: generateIntentionGrammar(event),
     causation: generateCausationGrammar(event),
     origin: [`The event ${event.name} #time# #social# #location# #intention# #causation#`],
