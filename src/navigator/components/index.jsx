@@ -5,6 +5,7 @@ import { connect } from 'react-redux';
 
 import './index.css';
 
+import generator from '../../generator';
 import Header from '../../header';
 import player from '../../player';
 import events from '../../events';
@@ -15,7 +16,7 @@ import { fetchWorld } from '../queries';
 
 const Player = player.components;
 const Events = events.components;
-
+const Generator = generator.components;
 class Navigator extends Component {
   componentWillReceiveProps({ data }) {
     if (!this.props.data.world && data.world) {
@@ -31,7 +32,8 @@ class Navigator extends Component {
 
     return (
       <div className="content">
-        <Player world={world} setWorld={this.props.setWorld} />
+        <Player world={world} />
+        <Generator setWorld={this.props.setWorld} />
         <Events events={world.latestEvents} />
         <World world={world} />
         <Location locations={world.locations} />

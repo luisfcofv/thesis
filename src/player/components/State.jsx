@@ -2,12 +2,6 @@ import React from 'react';
 import SelectField from 'material-ui/SelectField';
 import MenuItem from 'material-ui/MenuItem';
 
-const styles = {
-  field: {
-    marginTop: 20,
-  },
-};
-
 function State(props) {
   const handleChange = (event, index, value) => {
     props.updateStateLocation(value);
@@ -23,11 +17,11 @@ function State(props) {
     <div className="state">
       <h2 className="title">Player State</h2>
       <SelectField
+        className="field"
         autoWidth
         floatingLabelText="Location"
         value={props.player.stateLocation}
         onChange={handleChange}
-        style={styles.field}
       >
         {renderItems()}
       </SelectField>

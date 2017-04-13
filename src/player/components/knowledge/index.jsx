@@ -1,5 +1,7 @@
 import React from 'react';
 
+import './styles.css';
+
 import Selector from './Selector';
 
 function Knowledge(props) {
@@ -36,7 +38,6 @@ function Knowledge(props) {
 Knowledge.propTypes = {
   world: React.PropTypes.shape({}).isRequired,
   player: React.PropTypes.shape({}).isRequired,
-  setWorld: React.PropTypes.func.isRequired,
   updateLocations: React.PropTypes.func.isRequired,
   updateSocial: React.PropTypes.func.isRequired,
   updateGoals: React.PropTypes.func.isRequired,

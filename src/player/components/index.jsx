@@ -1,18 +1,12 @@
 import React, { Component } from 'react';
-import RaisedButton from 'material-ui/RaisedButton';
 import getMuiTheme from 'material-ui/styles/getMuiTheme';
-import injectTapEventPlugin from 'react-tap-event-plugin';
 import { connect } from 'react-redux';
-import { graphql } from 'react-apollo';
 
-import './index.css';
+import './styles.css';
 
-import actions from '../actions';
-import Knowledge from './Knowledge';
+import Knowledge from './knowledge';
 import State from './State'
-import { generateEvents } from '../mutations';
-
-injectTapEventPlugin();
+import actions from '../actions';
 
 class Player extends Component {
   static childContextTypes = {
@@ -30,6 +24,12 @@ class Player extends Component {
     }
   }
 
+  getChildContext() {
+    return {
+      muiTheme: getMuiTheme()
+    }
+  }
+
   updateStore(world, props) {
     const { goals, social, locations } = world.player.knowledge;
 
@@ -39,42 +39,11 @@ class Player extends Component {
     props.updateStateLocation(world.state.player.location);
   }
 
-  getChildContext() {
-    return {
-      muiTheme: getMuiTheme()
-    }
-  }
-
-  onTouchTap = () => {
-    const { goals, social, locations, stateLocation } =  this.props.player;
-    this.props.mutate({
-      variables: {
-        "world": "My world",
-        "location": stateLocation,
-        "knowledge": {
-          "locations": locations,
-          "social": social,
-          "goals": goals,
-        },
-      },
-    }).then(({ data }) => {
-      this.props.setWorld(data.generateEvents);
-    });
-  }
-
   render() {
     return (
-      <div className="player">
-        <div className="container">
-          <Knowledge {...this.props}/>
-          <State {...this.props}/>
-        </div>
-        <RaisedButton
-          primary
-          className="button"
-          label="Generate Event"
-          onTouchTap={this.onTouchTap}
-        />
+      <div className="container">
+        <Knowledge {...this.props}/>
+        <State {...this.props}/>
       </div>
     );
   }
@@ -83,10 +52,7 @@ class Player extends Component {
 Player.propTypes = {
   world: React.PropTypes.shape({}),
   player: React.PropTypes.shape({}),
-  setWorld: React.PropTypes.func.isRequired,
 };
 
 const mapStateToProps = ({ player }) => ({ player });
-
-const PlayerWithMutation = graphql(generateEvents)(Player);
-export default connect(mapStateToProps, { ...actions })(PlayerWithMutation);
+export default connect(mapStateToProps, { ...actions })(Player);

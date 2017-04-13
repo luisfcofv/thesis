@@ -2,11 +2,7 @@ import React, { Component } from 'react';
 import { Table, TableBody, TableHeader, TableHeaderColumn, TableRow, TableRowColumn } from 'material-ui/Table';
 import getMuiTheme from 'material-ui/styles/getMuiTheme';
 
-const styles = {
-  container: {
-    margin: '20px',
-  },
-};
+import './styles.css';
 
 class TableEvents extends Component {
   static childContextTypes = {
@@ -61,7 +57,7 @@ class TableEvents extends Component {
 
   render() {
     return (
-      <div style={styles.container}>
+      <div className="table-container">
         <Table>
           <TableHeader
             displaySelectAll={false}

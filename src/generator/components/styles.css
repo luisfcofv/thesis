@@ -1,0 +1,17 @@
+.generator {
+  display: flex;
+  margin-top: 20px;
+}
+
+.sliders-container {
+  margin-right: 50px;
+}
+
+.slider {
+  width: 500px;
+}
+
+.button-container {
+  display: flex;
+  flex-direction: column-reverse;
+}

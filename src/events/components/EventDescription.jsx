@@ -1,19 +1,8 @@
 import React from 'react';
 
-import { generateGrammar } from '../../tracery';
+import './styles.css';
 
-const styles = {
-  container: {
-    display: 'flex',
-    flexDirection: 'column',
-    alignItems: 'center',
-    justifyContent: 'center',
-  },
-  eventText: {
-    width: '80%',
-    textAlign: 'center',
-  },
-};
+import { generateGrammar } from '../../tracery';
 
 function EventDescription({ events }) {
   const sortedEvents = [...events];
@@ -23,9 +12,9 @@ function EventDescription({ events }) {
 
   const latestEvent = sortedEvents[0];
   return (
-    <div style={styles.container}>
+    <div className="latest-event">
       <p><b>Latest Event</b></p>
-      <p style={styles.eventText}>{generateGrammar(latestEvent)}</p>
+      <p className="event-text">{generateGrammar(latestEvent)}</p>
     </div>
   );
 }

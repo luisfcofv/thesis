@@ -1,14 +1,17 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import { createStore, applyMiddleware, combineReducers, compose } from 'redux';
 import ApolloClient, { createNetworkInterface } from 'apollo-client';
+import injectTapEventPlugin from 'react-tap-event-plugin';
 import { ApolloProvider } from 'react-apollo';
+import { createStore, applyMiddleware, combineReducers, compose } from 'redux';
 
 import './index.css';
 
 import navigator from './navigator';
 import player from './player';
 import events from './events';
+
+injectTapEventPlugin();
 
 const client = new ApolloClient({
   networkInterface: createNetworkInterface({

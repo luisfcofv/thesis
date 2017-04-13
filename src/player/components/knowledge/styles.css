@@ -1,0 +1,15 @@
+.selectors {
+  display: flex;
+  flex-direction: row;
+}
+
+.title {
+  text-align: center;
+  margin-top: 0px;
+}
+
+.section {
+  width: 200px;
+  margin-right: 10px;
+  margin-left: 10px;
+}

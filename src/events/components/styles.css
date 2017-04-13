@@ -1,0 +1,16 @@
+.table-container {
+  margin: 20px;
+}
+
+.latest-event {
+  display: flex;
+  margin-top: 30px;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+.event-text {
+  width: 80%;
+  text-align: center;
+}
