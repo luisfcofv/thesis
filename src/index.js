@@ -16,7 +16,7 @@ injectTapEventPlugin();
 
 const client = new ApolloClient({
   networkInterface: createNetworkInterface({
-    uri: 'http://sample-env.gxmxisniep.eu-west-2.elasticbeanstalk.com/graphql',
+    uri: 'http://sample-env-2.gxmxisniep.eu-west-2.elasticbeanstalk.com/graphql',
     // uri: 'http://localhost:3000/graphql',
   }),
 });
